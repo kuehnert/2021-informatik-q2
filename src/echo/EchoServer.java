@@ -30,7 +30,8 @@ public class EchoServer {
 
         try {
             String ip = InetAddress.getLocalHost().getHostAddress();
-            System.out.println("Server auf IP " + ip + " und Port " + PORT);
+//            System.out.println("Server auf IP " + ip + " und Port " + PORT);
+            System.out.println("Server auf IP 10.2.130.196 und Port " + PORT);
         } catch (UnknownHostException e) {
             System.err.println("IP konnte nicht bestimmt werden! Exiting.");
             System.exit(1);
@@ -41,6 +42,7 @@ public class EchoServer {
                 socket = server.accept();
                 writer = new PrintWriter(socket.getOutputStream(), true);
                 reader = new Scanner(socket.getInputStream());
+                System.out.println("Neuer Client verbunden: " + socket.getInetAddress().getHostAddress());
             } catch (IOException e) {
                 break;
             }
@@ -58,6 +60,7 @@ public class EchoServer {
 
             try {
                 socket.close();
+                System.out.println("Client getrennt.");
             } catch (IOException e) {
                 System.err.println("Fehler beim Schließen der Socket");
                 return;
