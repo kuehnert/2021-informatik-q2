@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -14,25 +15,36 @@ public class EchoServer {
     // Warnung: throws verhindert, dass Fehler an der richtigen Stelle
     // reportet werden
     // 1. Server soll IP Adresse
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ServerSocket server = null;
-        server = new ServerSocket(PORT);
         Socket socket = null;
         PrintWriter writer = null;
         Scanner reader = null;
 
-        // Gibt 0.0.0.0 zurück
-        String ip = server.getInetAddress().getHostAddress();
-        System.out.println("Server auf " + ip);
+        try {
+            server = new ServerSocket(PORT);
+        } catch (IOException e) {
+            System.err.println("Fehler beim Erstellen der Server Socket! Exiting.");
+            System.exit(1);
+        }
 
-        String ip2 = InetAddress.getLocalHost().getHostAddress();
-        System.out.println("Server auf " + ip2);
+        try {
+            String ip = InetAddress.getLocalHost().getHostAddress();
+            System.out.println("Server auf IP " + ip + " und Port " + PORT);
+        } catch (UnknownHostException e) {
+            System.err.println("IP konnte nicht bestimmt werden! Exiting.");
+            System.exit(1);
+        }
 
-        /*
-        while (false) {
-            socket = server.accept();
-            writer = new PrintWriter(socket.getOutputStream(), true);
-            reader = new Scanner(socket.getInputStream());
+        while (true) {
+            try {
+                socket = server.accept();
+                writer = new PrintWriter(socket.getOutputStream(), true);
+                reader = new Scanner(socket.getInputStream());
+            } catch (IOException e) {
+                break;
+            }
+
             String response = "dummy";
 
             while (true) {
@@ -44,9 +56,18 @@ public class EchoServer {
                 writer.println(response);
             }
 
-            socket.close();
+            try {
+                socket.close();
+            } catch (IOException e) {
+                System.err.println("Fehler beim Schließen der Socket");
+                return;
+            }
         }
-*/
-        server.close();
+
+        try {
+            server.close();
+        } catch (IOException e) {
+            System.err.println("Fehler beim Schließen des Servers");
+        }
     }
 }
