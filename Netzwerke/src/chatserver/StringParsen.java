@@ -1,4 +1,4 @@
-package net.misterk;
+package chatserver;
 
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.util.regex.Matcher;
