@@ -1,5 +1,7 @@
 package wahlserver;
 
+import java.util.Arrays;
+
 public class Parteiliste {
     public static final String[] PARTEIEN = {
             "CDU",
@@ -9,4 +11,3 @@ public class Parteiliste {
             "Linke"
     };
 }
-
