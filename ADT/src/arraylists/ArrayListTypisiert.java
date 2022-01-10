@@ -17,6 +17,6 @@ public class ArrayListTypisiert {
         for (Integer n : list) {
             summe = summe + n;
         }
-        System.out.println(n);
+        System.out.println();
     }
 }
