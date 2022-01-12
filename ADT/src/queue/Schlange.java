@@ -1,11 +1,35 @@
 package queue;
 
+// Garbage Collector
+
 public class Schlange {
     private Item head;
 
     public Schlange() {
+        clear();
+    }
+
+    public void clear() {
         head = null;
     }
+
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public int size() {
+        Item runner = head;
+        int size = 0;
+
+        while (runner != null) {
+            runner = runner.getNext();
+            size += 1;
+        }
+
+        return size;
+    }
+
+
 
     public void enqueue(String data) {
         Item newItem = new Item(data);
