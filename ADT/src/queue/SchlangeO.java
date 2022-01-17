@@ -2,10 +2,10 @@ package queue;
 
 // Garbage Collector
 
-public class Schlange {
-    private Item head;
+public class SchlangeO {
+    private ItemO head;
 
-    public Schlange() {
+    public SchlangeO() {
         clear();
     }
 
@@ -18,7 +18,7 @@ public class Schlange {
     }
 
     public int size() {
-        Item runner = head;
+        ItemO runner = head;
         int size = 0;
 
         while (runner != null) {
@@ -30,18 +30,18 @@ public class Schlange {
     }
 
     public void enqueue(String data) {
-        Item newItem = new Item(data);
+        ItemO newItemO = new ItemO(data);
 
         if (head == null) {
-            head = newItem;
+            head = newItemO;
         } else {
-            Item runner = head;
+            ItemO runner = head;
 
             while (runner.getNext() != null) {
                 runner = runner.getNext();
             }
 
-            runner.setNext(newItem);
+            runner.setNext(newItemO);
         }
     }
 
@@ -64,11 +64,11 @@ public class Schlange {
     }
 }
 
-class Item {
+class ItemO {
     private String data;
-    private Item next;
+    private ItemO next;
 
-    public Item(String data) {
+    public ItemO(String data) {
         this.data = data;
     }
 
@@ -80,11 +80,47 @@ class Item {
         this.data = data;
     }
 
-    public Item getNext() {
+    public ItemO getNext() {
         return next;
     }
 
-    public void setNext(Item next) {
+    public void setNext(ItemO next) {
         this.next = next;
+    }
+}
+
+class Student {
+    private int id;
+    private String vorname;
+    private String nachname;
+
+    public Student(int id, String vorname, String nachname) {
+        this.id = id;
+        this.vorname = vorname;
+        this.nachname = nachname;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public void setVorname(String vorname) {
+        this.vorname = vorname;
+    }
+
+    public String getNachname() {
+        return nachname;
+    }
+
+    public void setNachname(String nachname) {
+        this.nachname = nachname;
     }
 }
