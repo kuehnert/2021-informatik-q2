@@ -2,10 +2,10 @@ package queue;
 
 // Garbage Collector
 
-public class SchlangeO {
-    private ItemO head;
+public class SchlangeG {
+    private ItemG head;
 
-    public SchlangeO() {
+    public SchlangeG() {
         clear();
     }
 
@@ -18,7 +18,7 @@ public class SchlangeO {
     }
 
     public int size() {
-        ItemO runner = head;
+        ItemG runner = head;
         int size = 0;
 
         while (runner != null) {
@@ -30,18 +30,18 @@ public class SchlangeO {
     }
 
     public void enqueue(Object data) {
-        ItemO newItemO = new ItemO(data);
+        ItemG newItemG = new ItemG(data);
 
         if (head == null) {
-            head = newItemO;
+            head = newItemG;
         } else {
-            ItemO runner = head;
+            ItemG runner = head;
 
             while (runner.getNext() != null) {
                 runner = runner.getNext();
             }
 
-            runner.setNext(newItemO);
+            runner.setNext(newItemG);
         }
     }
 
@@ -64,27 +64,27 @@ public class SchlangeO {
     }
 }
 
-class ItemO {
-    private Object data;
-    private ItemO next;
+class ItemG<T> {
+    private T data;
+    private ItemG<T> next;
 
-    public ItemO(Object data) {
+    public ItemG(T data) {
         this.data = data;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 
-    public ItemO getNext() {
+    public ItemG getNext() {
         return next;
     }
 
-    public void setNext(ItemO next) {
+    public void setNext(ItemG next) {
         this.next = next;
     }
 }
