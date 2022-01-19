@@ -1,6 +1,5 @@
 package queue;
 
-
 class Student {
     private int id;
     private String vorname;
@@ -36,4 +35,3 @@ class Student {
         this.nachname = nachname;
     }
 }
-

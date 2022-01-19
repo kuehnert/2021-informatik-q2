@@ -2,8 +2,8 @@ package queue;
 
 // Garbage Collector
 
-public class SchlangeG {
-    private ItemG head;
+public class SchlangeG<T> {
+    private ItemG<T> head;
 
     public SchlangeG() {
         clear();
@@ -29,8 +29,8 @@ public class SchlangeG {
         return size;
     }
 
-    public void enqueue(Object data) {
-        ItemG newItemG = new ItemG(data);
+    public void enqueue(T data) {
+        ItemG newItemG = new ItemG<T>(data);
 
         if (head == null) {
             head = newItemG;
@@ -45,17 +45,17 @@ public class SchlangeG {
         }
     }
 
-    public Object dequeue() {
+    public T dequeue() {
         if (isEmpty()) {
             throw new RuntimeException("Queue is empty!");
         } else {
-            Object data = head.getData();
+            var data = head.getData();
             head = head.getNext();
             return data;
         }
     }
 
-    public Object head() {
+    public T head() {
         if (isEmpty()) {
             throw new RuntimeException("Queue is empty!");
         } else {
