@@ -1,6 +1,6 @@
 package queue;
 
-class Student {
+public class Student {
     private int id;
     private String vorname;
     private String nachname;

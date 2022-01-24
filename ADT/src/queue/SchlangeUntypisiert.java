@@ -2,10 +2,10 @@ package queue;
 
 // Garbage Collector
 
-public class Schlange {
-    private Item head;
+public class SchlangeUntypisiert {
+    private ItemUntypisiert head;
 
-    public Schlange() {
+    public SchlangeUntypisiert() {
         clear();
     }
 
@@ -18,7 +18,7 @@ public class Schlange {
     }
 
     public int size() {
-        Item runner = head;
+        ItemUntypisiert runner = head;
         int size = 0;
 
         while (runner != null) {
@@ -30,12 +30,12 @@ public class Schlange {
     }
 
     public void enqueue(String data) {
-        Item newItem = new Item(data);
+        ItemUntypisiert newItem = new ItemUntypisiert(data);
 
         if (head == null) {
             head = newItem;
         } else {
-            Item runner = head;
+            ItemUntypisiert runner = head;
 
             while (runner.getNext() != null) {
                 runner = runner.getNext();
@@ -64,11 +64,11 @@ public class Schlange {
     }
 }
 
-class Item {
+class ItemUntypisiert {
     private String data;
-    private Item next;
+    private ItemUntypisiert next;
 
-    public Item(String data) {
+    public ItemUntypisiert(String data) {
         this.data = data;
     }
 
@@ -80,11 +80,11 @@ class Item {
         this.data = data;
     }
 
-    public Item getNext() {
+    public ItemUntypisiert getNext() {
         return next;
     }
 
-    public void setNext(Item next) {
+    public void setNext(ItemUntypisiert next) {
         this.next = next;
     }
 }

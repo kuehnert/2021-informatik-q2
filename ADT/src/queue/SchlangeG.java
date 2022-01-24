@@ -3,7 +3,7 @@ package queue;
 // Garbage Collector
 
 public class SchlangeG<T> {
-    private ItemG<T> head;
+    private Item<T> head;
 
     public SchlangeG() {
         clear();
@@ -18,7 +18,7 @@ public class SchlangeG<T> {
     }
 
     public int size() {
-        ItemG runner = head;
+        Item runner = head;
         int size = 0;
 
         while (runner != null) {
@@ -30,12 +30,12 @@ public class SchlangeG<T> {
     }
 
     public void enqueue(T data) {
-        ItemG newItemG = new ItemG<T>(data);
+        Item newItemG = new Item<T>(data);
 
         if (head == null) {
             head = newItemG;
         } else {
-            ItemG runner = head;
+            Item runner = head;
 
             while (runner.getNext() != null) {
                 runner = runner.getNext();
@@ -64,27 +64,3 @@ public class SchlangeG<T> {
     }
 }
 
-class ItemG<T> {
-    private T data;
-    private ItemG<T> next;
-
-    public ItemG(T data) {
-        this.data = data;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public ItemG getNext() {
-        return next;
-    }
-
-    public void setNext(ItemG next) {
-        this.next = next;
-    }
-}

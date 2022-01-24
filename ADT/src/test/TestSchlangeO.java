@@ -1,4 +1,7 @@
-package queue;
+package test;
+
+import queue.SchlangeO;
+import queue.Student;
 
 public class TestSchlangeO {
     private static void testSchlangeO() {

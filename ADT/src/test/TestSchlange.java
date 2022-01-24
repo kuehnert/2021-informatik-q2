@@ -1,9 +1,11 @@
-package queue;
+package test;
+
+import queue.SchlangeUntypisiert;
 
 public class TestSchlange {
 
     private static void testEnqueue() {
-        Schlange s = new Schlange();
+        SchlangeUntypisiert s = new SchlangeUntypisiert();
         System.out.println(s.size());
         System.out.println(s.isEmpty());
 
