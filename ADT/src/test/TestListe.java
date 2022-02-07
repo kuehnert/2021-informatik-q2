@@ -69,6 +69,7 @@ public class TestListe {
     public static void main(String[] args) {
         // testDebug();
         // testAddGet();
-        testDeleteAt();
+        // testDeleteAt();
+        testFind();
     }
 }

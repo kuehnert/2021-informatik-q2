@@ -169,6 +169,10 @@ public class Liste<T> {
         //     System.out.format("%2d: %s%n", i, get(i));
         // }
     }
+
+    public T find(T search) {
+        return null;
+    }
 }
 
 

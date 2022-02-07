@@ -1,6 +1,6 @@
 package queue;
 
-public class Item<T extends Comparable> {
+public class Item<T> {
     private T data;
     private Item<T> next;
 
@@ -29,7 +29,3 @@ public class Item<T extends Comparable> {
         this.next = next;
     }
 }
-
-/*
-   student
- */

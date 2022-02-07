@@ -1,6 +1,6 @@
 package queue;
 
-public class Student implements Comparable<Student> {
+public class Student {
     private int id;
     private String vorname;
     private String nachname;
@@ -48,11 +48,6 @@ public class Student implements Comparable<Student> {
 
     protected String searchString() {
         return nachname + "," + vorname;
-    }
-
-    @Override
-    public int compareTo(Student other) {
-        return searchString().compareTo(other.searchString());
     }
 
     @Override
