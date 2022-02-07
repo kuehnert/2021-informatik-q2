@@ -14,21 +14,26 @@ import queue.Item;
 
 /*
  * Desiderata:
- * 1) get(int index) => T | Element an einer bestimmten Stelle zurückgeben
- * 2) deleteAt(int index) => T
- * 3) move(int from, int to)
- * 4) set(int index, T data) überschreiben
+ * ✓) get(int index) => T | Element an einer bestimmten Stelle zurückgeben
+ * ✓) deleteAt(int index) => T
+ * ✓) size() => Größe der liste.Liste
  * 5) insert(int index, T data)
- * 6) size() => Größe der liste.Liste
+ * 4) set(int index, T data) überschreiben
+ * 3) swap(int from, int to)
  * 7) filter() => Auswählen nach Kriterien
- * 8) get(T data) => Suche nach Daten
  * 9) indexOf(T data) => Suche nach Index von Daten
+ * ------------------
+ * 8) find(T data) => Suche nach Daten
+ * Comperator
+ * ------------------
+ *
  * 10) debug() => Zeige alle gespeicherten Elemente mit Index an:
  *     0: Anna
  *     1: Peter
  *     2: Willi
  *
  * Nice to have:
+ * B) move(int from, int to)
  * 1) maxSize()
  * 2) concat(liste.Liste<T> otherList) => void | Mehrere Elemente gleichzeitig anhängen
  */

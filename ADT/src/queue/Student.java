@@ -1,12 +1,18 @@
 package queue;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private int id;
     private String vorname;
     private String nachname;
 
     public Student(int id, String vorname, String nachname) {
         this.id = id;
+        this.vorname = vorname;
+        this.nachname = nachname;
+    }
+
+    public Student(String vorname, String nachname) {
+        this.id = -1;
         this.vorname = vorname;
         this.nachname = nachname;
     }
@@ -38,5 +44,23 @@ public class Student {
     @Override
     public String toString() {
         return String.format("%d. %s %s", id, vorname, nachname);
+    }
+
+    protected String searchString() {
+        return nachname + "," + vorname;
+    }
+
+    @Override
+    public int compareTo(Student other) {
+        return searchString().compareTo(other.searchString());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other.getClass() != Student.class) {
+            return false;
+        } else {
+            return searchString().equals(((Student) other).searchString());
+        }
     }
 }

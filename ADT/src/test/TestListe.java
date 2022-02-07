@@ -34,11 +34,36 @@ public class TestListe {
         meineListe.add("4");
         meineListe.add("5");
         meineListe.debug();
+
         String out = meineListe.deleteAt(2);
         System.out.println("Geloescht: " + out);
-
         meineListe.debug();
 
+        out = meineListe.deleteAt(1);
+        System.out.println("Geloescht: " + out);
+        meineListe.debug();
+
+        out = meineListe.deleteAt(2);
+        System.out.println("Geloescht: " + out);
+        meineListe.debug();
+
+        out = meineListe.deleteAt(0);
+        System.out.println("Geloescht: " + out);
+        meineListe.debug();
+
+        out = meineListe.deleteAt(0);
+        System.out.println("Geloescht: " + out);
+        meineListe.debug();
+    }
+
+    public static void testFind() {
+        Liste<Student> meineListe = new Liste<>();
+        Student student = new Student(1, "Hans", "Glock");
+        meineListe.add(student);
+
+        Student search = new Student("Hans", "Glock");
+        Student gefunden = meineListe.find(search);
+        System.out.println("Gefunden: " + gefunden);
     }
 
     public static void main(String[] args) {
