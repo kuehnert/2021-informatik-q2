@@ -21,7 +21,7 @@ public class Item<T> {
         this.data = data;
     }
 
-    public Item getNext() {
+    public Item<T> getNext() {
         return next;
     }
 

@@ -34,4 +34,9 @@ public class Student {
     public void setNachname(String nachname) {
         this.nachname = nachname;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%d. %s %s", id, vorname, nachname);
+    }
 }

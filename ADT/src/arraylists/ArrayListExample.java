@@ -27,17 +27,17 @@ public class ArrayListExample {
         sList.add("Frikadelle");
         sList.add("Fabian");
         for (Object student : sList) {
-            System.out.println("Schüler aus Liste: " + student);
+            System.out.println("Schüler aus liste.Liste: " + student);
         }
 
         sList.remove("Frikadelle");
         for (Object student : sList) {
-            System.out.println("Schüler aus Liste: " + student);
+            System.out.println("Schüler aus liste.Liste: " + student);
         }
 
         sList.remove("Frikadelle");
         for (Object student : sList) {
-            System.out.println("Schüler aus Liste: " + student);
+            System.out.println("Schüler aus liste.Liste: " + student);
         }
     }
 
