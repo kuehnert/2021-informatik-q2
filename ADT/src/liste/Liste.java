@@ -6,8 +6,9 @@ package liste;/*
  *    (Verkettete liste.Liste vs. Array)
  *
  * Challenge 2: Haben Sie eine Idee, wie Sie auf die Überprüfungen auf head == null verzichten können?
+ * Antwort: Einfügen von Buffer-Elementen am Anfang und Ende
  *
- * Challenge 3: DVK
+ * Challenge 3: Doppelt-verkettete Liste
  */
 
 import queue.Item;
@@ -139,11 +140,7 @@ public class Liste<T> {
             first = first.getNext();
             return data;
         } else {
-            Item<T> runner = first;
-
-            for (int i = 0; i < index-1; i++) {
-                runner = runner.getNext();
-            }
+            Item<T> runner = getPredecessor(index);
 
             T data = runner.getNext().getData();
             runner.setNext(runner.getNext().getNext());
@@ -151,7 +148,27 @@ public class Liste<T> {
             return data;
         }
     }
-    
+
+    private Item<T> getPredecessor(int index) {
+        index--;
+
+        if (index >= size()) {
+            throw new IllegalArgumentException("index too high");
+        }
+
+        Item<T> runner = first;
+
+        for (int i = 0; i < index-1; i++) {
+            runner = runner.getNext();
+        }
+
+        return runner;
+    }
+
+    private Item<T> getItemAt(int index) {
+        return getPredecessor(index+1);
+    }
+
     public void debug() {
         System.out.format("Enthalten: %d Elemente%n", size());
         Item<T> runner = first;
@@ -171,7 +188,30 @@ public class Liste<T> {
     }
 
     public T find(T search) {
-        return null;
+        throw new UnsupportedOperationException("Noch nicht programmiert!");
+    }
+
+    public void insertAt(int index, T data) {
+        Item<T> newItem = new Item<>(data);
+
+        if (index > size() + 1) {
+            throw new IllegalArgumentException(String.format("Invalid index to insert (%d)", index));
+        }
+
+        if (isEmpty()) {
+            first = newItem;
+        } else {
+            Item<T> pred = getPredecessor(index);
+            throw new UnsupportedOperationException("Noch nicht fertig!");
+        }
+    }
+
+    public void setDataAt(int index, T data) {
+        if (index >= size()) {
+            throw new IllegalArgumentException("index too high");
+        }
+
+
     }
 }
 
