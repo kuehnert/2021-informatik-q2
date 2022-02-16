@@ -1,4 +1,6 @@
-package liste;/*
+package liste;
+
+/*
  * Challenge 1: Abstrakte Datentypen => Nur Schnittstelle (die öffentlichen Methoden, die er bietet) muss bekannt sein,
  * nicht die
  * Implementation (wie es programmiert
