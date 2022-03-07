@@ -1,6 +1,10 @@
 package Baeume;
 
 public class BinBaum {
+    public static final int NLR = 0;
+    public static final int LNR = 1;
+    public static final int RNL = 2;
+
     private Node root;
 
     public BinBaum() {
@@ -51,24 +55,18 @@ public class BinBaum {
         return runner.getData();
     }
 
-    public void ausgebenNLR() {
-        checkRoot();
-        ausgebenNLR(root);
+    public String ausgeben() {
+        return ausgeben(LNR);
     }
 
-    private void ausgebenNLR(Node node) {
-        // Gibt Wert vom aktuellen Knoten aus
-        System.out.println(node.getData());
-
-        // Gib linken Teilbaum aus
-        if (node.getLeft() != null) {
-            ausgebenNLR(node.getLeft());
-        }
-
-        // Gib rechten Teilbaum aus
-        if (node.getRight() != null) {
-            ausgebenNLR(node.getRight());
-        }
+    public String ausgeben(int order) {
+        checkRoot();
+        return switch (order) {
+            case NLR -> root.nlr();
+            case LNR -> root.lnr();
+            case RNL -> root.rnl();
+            default -> throw new IllegalStateException("Unexpected value: " + order);
+        };
     }
 }
 
@@ -77,6 +75,58 @@ class Node {
     private Node left;
     private Node right;
 
+    public String nlr() {
+        // Gibt Wert vom aktuellen Knoten aus
+        String s = getData() + " ";
+
+        // Gib linken Teilbaum aus
+        if (left != null) {
+            s += left.nlr();
+        }
+
+        // Gib rechten Teilbaum aus
+        if (right != null) {
+            s+= right.nlr();
+        }
+
+        return s;
+    }
+
+    public String lnr() {
+        // Gib linken Teilbaum aus
+        if (left != null) {
+            left.lnr();
+        }
+
+        // Gibt Wert vom aktuellen Knoten aus
+        System.out.print(getData() + " ");
+
+        // Gib rechten Teilbaum aus
+        if (right != null) {
+            right.lnr();
+        }
+
+        return "blub";
+    }
+
+    public String rnl() {
+        // Gib rechten Teilbaum aus
+        if (right != null) {
+            right.rnl();
+        }
+
+        // Gibt Wert vom aktuellen Knoten aus
+        System.out.print(getData() + " ");
+
+        // Gib linken Teilbaum aus
+        if (left != null) {
+            left.rnl();
+        }
+
+        return "bla";
+    }
+
+    // Konstruktoren
     public Node(int data) {
         this.data = data;
     }
@@ -87,6 +137,7 @@ class Node {
         this.right = right;
     }
 
+    // Getter und Setter
     public int getData() {
         return data;
     }

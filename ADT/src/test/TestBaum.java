@@ -7,6 +7,8 @@ public class TestBaum {
         BinBaum baum = new BinBaum();
         System.out.println("Min: " + baum.findMin());
         System.out.println("Max: " + baum.findMax());
-        baum.ausgeben();
+        System.out.println(baum.ausgeben(BinBaum.NLR));
+        // System.out.println(baum.ausgeben(BinBaum.LNR));
+        // System.out.println(baum.ausgeben(BinBaum.RNL));
     }
 }
