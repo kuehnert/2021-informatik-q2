@@ -17,13 +17,45 @@ public class BinBaum {
 
         // bottom-up
         Node n2 = new Node(2, new Node(1), new Node(3));
-        Node n20 = new Node(20, new Node(10), new Node(21));
+        Node n20 = new Node(20, new Node(10), new Node(21, null, new Node(22)));
         Node n5 = new Node(5, n2, n20);
 
         Node n30 = new Node(30, new Node(25), new Node(47));
-        Node n50 = new Node(50, n30, null);
-
+        Node n50 = new Node(50, n30, new Node(55));
         root = new Node(23, n5, n50);
+    }
+
+    public void add(int zahl) {
+        Node newNode = new Node(zahl);
+
+        if (root == null) {
+            root = newNode;
+        } else {
+            Node runner = root;
+            while (true) {
+                // if (zahl == runner.getData()) {
+                //     throw new IllegalArgumentException("Zahl "+zahl+" gibt es schon.");
+                // }
+
+                if (zahl < runner.getData()) {
+                    // muss nach links
+                    if (runner.getLeft() == null) {
+                        runner.setLeft(newNode);
+                        break;
+                    } else {
+                        runner = runner.getLeft();
+                    }
+                } else {
+                    // muss nach rechts
+                    if (runner.getRight() == null) {
+                        runner.setRight(newNode);
+                        break;
+                    } else {
+                        runner = runner.getRight();
+                    }
+                }
+            }
+        }
     }
 
     public int findMin() {
@@ -31,7 +63,7 @@ public class BinBaum {
         Node runner = root;
 
         // gehe immer weiter nach links, bis ...
-        while (runner.getLeft() != null){
+        while (runner.getLeft() != null) {
             runner = runner.getLeft();
         }
 
@@ -48,7 +80,7 @@ public class BinBaum {
         checkRoot();
         Node runner = root;
 
-        while (runner.getRight() != null){
+        while (runner.getRight() != null) {
             runner = runner.getRight();
         }
 
@@ -61,6 +93,7 @@ public class BinBaum {
 
     public String ausgeben(int order) {
         checkRoot();
+
         return switch (order) {
             case NLR -> root.nlr();
             case LNR -> root.lnr();
@@ -68,12 +101,61 @@ public class BinBaum {
             default -> throw new IllegalStateException("Unexpected value: " + order);
         };
     }
+
+    public String ausgebenJ(int order) {
+        checkRoot();
+        StringBuilder sb = new StringBuilder();
+        root.lnrJ(sb);
+        return sb.toString();
+    }
+
+    public int anzahl() {
+        checkRoot();
+        return root.anzahl();
+    }
+
+    public int tiefe() {
+        checkRoot();
+        return root.tiefe();
+    }
 }
 
 class Node {
     private int data;
     private Node left;
     private Node right;
+
+    // Konstruktoren
+    public Node(int data) {
+        this.data = data;
+    }
+
+    public Node(int data, Node left, Node right) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+
+    public int tiefe() {
+        int tiefeL = left == null ? 0 : 1 + left.tiefe();
+        int tiefeR = right == null ? 0 : 1 + right.tiefe();
+
+        return Math.max(tiefeL, tiefeR);
+    }
+
+    public int anzahl() {
+        int anzahl = 1;
+
+        if (left != null) {
+            anzahl += left.anzahl();
+        }
+
+        if (right != null) {
+            anzahl += right.anzahl();
+        }
+
+        return anzahl;
+    }
 
     public String nlr() {
         // Gibt Wert vom aktuellen Knoten aus
@@ -86,7 +168,7 @@ class Node {
 
         // Gib rechten Teilbaum aus
         if (right != null) {
-            s+= right.nlr();
+            s += right.nlr();
         }
 
         return s;
@@ -94,6 +176,7 @@ class Node {
 
     public String lnr() {
         // Gib linken Teilbaum aus
+
         if (left != null) {
             left.lnr();
         }
@@ -107,6 +190,22 @@ class Node {
         }
 
         return "blub";
+    }
+
+    public void lnrJ(StringBuilder sb) {
+        // Gib linken Teilbaum aus
+
+        if (left != null) {
+            left.lnrJ(sb);
+        }
+
+        // Gibt Wert vom aktuellen Knoten aus
+        sb.append(getData()).append(" ");
+
+        // Gib rechten Teilbaum aus
+        if (right != null) {
+            right.lnrJ(sb);
+        }
     }
 
     public String rnl() {
@@ -124,17 +223,6 @@ class Node {
         }
 
         return "bla";
-    }
-
-    // Konstruktoren
-    public Node(int data) {
-        this.data = data;
-    }
-
-    public Node(int data, Node left, Node right) {
-        this.data = data;
-        this.left = left;
-        this.right = right;
     }
 
     // Getter und Setter
