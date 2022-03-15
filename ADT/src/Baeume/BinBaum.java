@@ -16,13 +16,24 @@ public class BinBaum {
         // root.left.left.right = new Node(3);
 
         // bottom-up
-        Node n2 = new Node(2, new Node(1), new Node(3));
-        Node n20 = new Node(20, new Node(10), new Node(21, null, new Node(22)));
-        Node n5 = new Node(5, n2, n20);
+        // Node n2 = new Node(2, new Node(1), new Node(3));
+        // Node n20 = new Node(20, new Node(10), new Node(21, null, new Node(22)));
+        // Node n5 = new Node(5, n2, n20);
+        //
+        // Node n30 = new Node(30, new Node(25), new Node(47));
+        // Node n50 = new Node(50, n30, new Node(55));
+        // root = new Node(23, n5, n50);
+        root = null;
+    }
 
-        Node n30 = new Node(30, new Node(25), new Node(47));
-        Node n50 = new Node(50, n30, new Node(55));
-        root = new Node(23, n5, n50);
+    public BinBaum(int... zahlen) {
+        addAll(zahlen);
+    }
+
+    public void addAll(int[] zahlen) {
+        for (int i = 0; i < zahlen.length; i++) {
+            add(zahlen[i]);
+        }
     }
 
     public void add(int zahl) {
@@ -117,6 +128,18 @@ public class BinBaum {
     public int tiefe() {
         checkRoot();
         return root.tiefe();
+    }
+
+    public boolean istAusgeglichen() {
+        checkRoot();
+        int tiefeL = root.getLeft() == null ? 0 : root.getLeft().tiefe();
+        int tiefeR = root.getRight() == null ? 0 : root.getRight().tiefe();
+        return Math.abs(tiefeL - tiefeR) <= 1;
+    }
+
+    public boolean istVollstaendig() {
+        checkRoot();
+        return root.istVollstaendig();
     }
 }
 
@@ -248,5 +271,15 @@ class Node {
 
     public void setRight(Node right) {
         this.right = right;
+    }
+
+    public boolean istVollstaendig() {
+        if (left == null && right != null || left != null && right == null) {
+            return false;
+        } else {
+            boolean vollstaendigL = left == null ? true : left.istVollstaendig();
+            boolean vollstaendigR = right == null ? true : right.istVollstaendig();
+            return vollstaendigL && vollstaendigR;
+        }
     }
 }
