@@ -1,6 +1,6 @@
 package test;
 
-import Baeume.BinBaum;
+import baeume.es_eric.BinBaum;
 
 public class TestBaum {
     private static void testTree(BinBaum baum) {

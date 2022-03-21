@@ -1,4 +1,4 @@
-package Baeume;
+package baeume.es_eric;
 
 public class BinBaum {
     public static final int NLR = 0;
@@ -130,6 +130,7 @@ public class BinBaum {
         return root.tiefe();
     }
 
+    // Vorsicht, Fehlerhaft! Es muss auch jeder Teilbaum ausgeglichen sein
     public boolean istAusgeglichen() {
         checkRoot();
         int tiefeL = root.getLeft() == null ? 0 : root.getLeft().tiefe();
